@@ -6,11 +6,22 @@
 //
 
 import UIKit
+import MapKit
 
 class CurrentRunVC: LocationVC {
     
     @IBOutlet weak var sliderImageView: UIImageView!
     @IBOutlet weak var swipeBGImageView: UIImageView!
+    @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var paceLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var pauseButton: UIButton!
+    
+    var startLocation: CLLocation!
+    var lastLocation: CLLocation!
+    
+    var runDistance = 0.0
+    let milesConversionFactor = 0.000621371
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +29,28 @@ class CurrentRunVC: LocationVC {
         sliderImageView.addGestureRecognizer(swipeGesture)
         sliderImageView.isUserInteractionEnabled = true
         swipeGesture.delegate = self as? UIGestureRecognizerDelegate
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        manager?.delegate = self
+        manager?.distanceFilter = 10
+        startRun()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        endRun()
+    }
+    
+    func startRun() {
+        manager?.startUpdatingLocation()
+    }
+    
+    func endRun() {
+        manager?.stopUpdatingLocation()
+    }
+    
+    @IBAction func pauseRunButtonTapped(_ sender: Any) {
+        
     }
     
     @objc func endRunSwiped(sender: UIPanGestureRecognizer) {
@@ -48,7 +81,36 @@ class CurrentRunVC: LocationVC {
             }
         }
     }
-    @IBAction func pauseRunButtonTapped(_ sender: Any) {
+    
+    
+}
+
+extension CurrentRunVC: CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        if #available(iOS 14.0, *) {
+            switch manager.authorizationStatus {
+            case  .authorizedWhenInUse, .authorizedAlways:
+                break
+            case .denied, .restricted:
+                break
+            case .notDetermined:
+                manager.requestWhenInUseAuthorization()
+                break
+            default:
+                break
+            }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if startLocation == nil {
+            startLocation = locations[0]
+        } else if let location = locations.last {
+            runDistance += lastLocation.distance(from: location)
+            distanceLabel.text = "\(runDistance.metersToMiles(decimalAccuracy: 2))"
+        }
+        
+        lastLocation = locations.last
     }
     
 }

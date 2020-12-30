@@ -18,6 +18,7 @@
 		5F9770A42595408C00A63AB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F9770A22595408C00A63AB1 /* LaunchScreen.storyboard */; };
 		5F9770AD259543EA00A63AB1 /* StartRunVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9770AC259543EA00A63AB1 /* StartRunVC.swift */; };
 		5F9770B0259543FA00A63AB1 /* RunLogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9770AF259543FA00A63AB1 /* RunLogVC.swift */; };
+		5F99DD38259CDE7F0028782E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F99DD37259CDE7F0028782E /* Extensions.swift */; };
 		5FCEFA582595476C00C75A79 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5FCEFA562595476C00C75A79 /* Montserrat-Regular.ttf */; };
 		5FCEFA592595476C00C75A79 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5FCEFA572595476C00C75A79 /* Montserrat-Bold.ttf */; };
 /* End PBXBuildFile section */
@@ -36,6 +37,7 @@
 		5F9770A52595408C00A63AB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F9770AC259543EA00A63AB1 /* StartRunVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRunVC.swift; sourceTree = "<group>"; };
 		5F9770AF259543FA00A63AB1 /* RunLogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunLogVC.swift; sourceTree = "<group>"; };
+		5F99DD37259CDE7F0028782E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5FCEFA562595476C00C75A79 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		5FCEFA572595476C00C75A79 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,6 +101,7 @@
 		5F9770B4259545C800A63AB1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				5F99DD37259CDE7F0028782E /* Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F109433259B9D5000C99B48 /* EndRunSlider.swift in Sources */,
+				5F99DD38259CDE7F0028782E /* Extensions.swift in Sources */,
 				5F97709C2595408C00A63AB1 /* ViewController.swift in Sources */,
 				5F9770982595408C00A63AB1 /* AppDelegate.swift in Sources */,
 				5F97709A2595408C00A63AB1 /* SceneDelegate.swift in Sources */,
