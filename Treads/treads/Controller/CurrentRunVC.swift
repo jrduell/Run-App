@@ -46,11 +46,22 @@ class CurrentRunVC: LocationVC {
     func startRun() {
         manager?.startUpdatingLocation()
         startTimer()
+        pauseButton.setImage(#imageLiteral(resourceName: "pauseButton"), for: .normal)
     }
     
     func endRun() {
         manager?.stopUpdatingLocation()
+        //add object to realm
     }
+    
+    func pauseRun() {
+        startLocation = nil
+        lastLocation = nil
+        timer.invalidate()
+        manager?.stopUpdatingLocation()
+        pauseButton.setImage(#imageLiteral(resourceName: "resumeButton"), for: .normal)
+    }
+    
     
     func startTimer() {
         durationLabel.text = counter.stringTimeFormatHHMMSS()
@@ -68,7 +79,11 @@ class CurrentRunVC: LocationVC {
     }
     
     @IBAction func pauseRunButtonTapped(_ sender: Any) {
-        
+        if timer.isValid {
+            pauseRun()
+        } else {
+            startRun()
+        }
     }
     
     @objc func endRunSwiped(sender: UIPanGestureRecognizer) {
@@ -94,7 +109,7 @@ class CurrentRunVC: LocationVC {
                     sliderView.center.x = self.swipeBGImageView.center.x - minAdjust            }
             } else if sender.state == UIGestureRecognizer.State.ended && sliderView.center.x >= (swipeBGImageView.center.x + maxAdjust) {
                 //dismiss view if user lets go at full right position
-                //End run code goes here
+                endRun()
                 dismiss(animated: true, completion: nil)
             }
         }
